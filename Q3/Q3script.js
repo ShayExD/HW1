@@ -68,8 +68,8 @@ function displayClocksAndSeconds() {
 
 
 document.getElementById("ClockForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent the default form submission
-
+  event.preventDefault(); 
+  
   const countryInput = document.getElementById("country").value;
   const hoursInput = document.getElementById("hours").value;
   const minutesInput = document.getElementById("minutes").value;
