@@ -1,16 +1,117 @@
 class Clock {
-    constructor(hours, minutes, seconds) {
+    constructor(hours, minutes, seconds,country) {
       this.hours = hours;
       this.minutes = minutes;
       this.seconds = seconds;
-
+      this.country = country;
     }
     
     ConverToSeconds(){
-        let secondsAfterConvert = this.hours*3600+this.minutes*60+this.seconds
-        console.log(secondsAfterConvert)
+        return this.hours * 3600 + this.minutes * 60 + this.seconds;
+
     }
   
 }
 
-let MyClock= new Clock();
+const clocksArray = [];
+
+function onSubmit(){
+  const countryInput = document.getElementById("country").value;
+  const hoursInput = document.getElementById("hours").value;
+  const minutesInput = document.getElementById("minutes").value;
+  const secondsInput = document.getElementById("seconds").value;
+
+
+  const MyClock =  new Clock(
+    parseInt(hoursInput),
+    parseInt(minutesInput),
+    parseInt(secondsInput),
+    countryInput
+);
+
+console.log(MyClock);
+console.log(clocksArray.length)
+
+
+clocksArray.push(MyClock);
+console.log(clocksArray)
+
+if (clocksArray.length == 5) {
+  displayClocksAndSeconds();
+  clocksArray = [];
+}
+
+document.getElementById("country").value = "";
+document.getElementById("hours").value = "";
+document.getElementById("minutes").value = "";
+document.getElementById("seconds").value = "";
+
+return false;
+}
+
+
+
+
+
+
+
+function displayClocksAndSeconds() {
+  let outputText = "Clocks:\n";
+  clocksArray.forEach((clock) => {
+       outputText += `Country: ${clock.country} - ${clock.hours}:${clock.minutes}:${clock.seconds} Converted to Seconds: ${clock.ConverToSeconds()}\n`;
+  });
+
+  console.log(outputText);
+  document.getElementById("clocksOutput").innerHTML = outputText;
+}
+
+
+
+document.getElementById("ClockForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  const countryInput = document.getElementById("country").value;
+  const hoursInput = document.getElementById("hours").value;
+  const minutesInput = document.getElementById("minutes").value;
+  const secondsInput = document.getElementById("seconds").value;
+
+  const padWithZeros = (value) => (value < 10 ? "0" + value : value);
+
+  const validHours = /^(0?[0-9]|1[0-9]|2[0-3])$/.test(hoursInput);
+  const formattedHours = validHours ? padWithZeros(parseInt(hoursInput)) : "00";
+
+  const validMinutes = /^[0-5]?[0-9]$/.test(minutesInput);
+  const formattedMinutes = validMinutes ? padWithZeros(parseInt(minutesInput)) : "00";
+
+  const validSeconds = /^[0-5]?[0-9]$/.test(secondsInput);
+  const formattedSeconds = validSeconds ? padWithZeros(parseInt(secondsInput)) : "00";
+
+  if (validHours && validMinutes && validSeconds) {
+      const myClock = new Clock(
+          parseInt(formattedHours),
+          parseInt(formattedMinutes),
+          parseInt(formattedSeconds),
+          countryInput
+      );
+
+      clocksArray.push(myClock);
+      console.log(clocksArray);
+
+      if (clocksArray.length === 5) {
+          displayClocksAndSeconds();
+          clocksArray = [];
+      }
+
+      // Reset form inputs
+      document.getElementById("country").value = "";
+      document.getElementById("hours").value = "";
+      document.getElementById("minutes").value = "";
+      document.getElementById("seconds").value = "";
+  } else {
+      alert("Invalid input. Please enter valid values for hours, minutes, and seconds.");
+  }
+});
+
+
+
+

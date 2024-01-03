@@ -10,20 +10,24 @@
     <form id="ClockForm">
 
     
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country">
+
         <label for="hours">Hours:</label>
-        <input type="text" id="hours" name="hours" pattern="[0-2][0-9]|2[0-4]" title="Enter a two-digit number between 00 and 24" required>
+        <input type="number" id="hours" name="hours"  required>
     
         <label for="minutes">Minutes:</label>
-        <input type="text" id="minutes" name="minutes" pattern="[0-5][0-9]" title="Enter a two-digit number between 00 and 59" required>
+        <input type="number" id="minutes" name="minutes"  required>
     
         <label for="seconds">Seconds:</label>
-        <input type="text" id="seconds" name="seconds" pattern="[0-5][0-9]" title="Enter a two-digit number between 00 and 59" required>
+        <input type="number" id="seconds" name="seconds" required>
     
-        <button type="submit">Submit</button>
+        <button  type="submit" >Submit</button>
          
        
       </form>
 
+    <p id="clocksOutput"></p>
 
 
   <script src="Q3script.js" defer></script>
