@@ -10,6 +10,9 @@ class Clock {
         return this.hours * 3600 + this.minutes * 60 + this.seconds;
 
     }
+    Show(){
+      
+    }
   
 }
 
@@ -69,7 +72,7 @@ function displayClocksAndSeconds() {
 
 document.getElementById("ClockForm").addEventListener("submit", function(event) {
   event.preventDefault(); 
-  
+
   const countryInput = document.getElementById("country").value;
   const hoursInput = document.getElementById("hours").value;
   const minutesInput = document.getElementById("minutes").value;
