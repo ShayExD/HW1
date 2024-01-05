@@ -1,3 +1,8 @@
+
+const padWithZeros = (value) => (value < 10 ? "0" + value : value);
+
+
+
 class Clock {
     constructor(hours, minutes, seconds,country) {
       this.hours = hours;
@@ -11,57 +16,19 @@ class Clock {
 
     }
     Show(){
-      
+      return `${padWithZeros(this.hours)}: ${padWithZeros(this.minutes)}: ${padWithZeros(this.seconds)}`
     }
   
 }
 
 const clocksArray = [];
 
-function onSubmit(){
-  const countryInput = document.getElementById("country").value;
-  const hoursInput = document.getElementById("hours").value;
-  const minutesInput = document.getElementById("minutes").value;
-  const secondsInput = document.getElementById("seconds").value;
-
-
-  const MyClock =  new Clock(
-    parseInt(hoursInput),
-    parseInt(minutesInput),
-    parseInt(secondsInput),
-    countryInput
-);
-
-console.log(MyClock);
-console.log(clocksArray.length)
-
-
-clocksArray.push(MyClock);
-console.log(clocksArray)
-
-if (clocksArray.length == 5) {
-  displayClocksAndSeconds();
-  clocksArray = [];
-}
-
-document.getElementById("country").value = "";
-document.getElementById("hours").value = "";
-document.getElementById("minutes").value = "";
-document.getElementById("seconds").value = "";
-
-return false;
-}
-
-
-
-
-
 
 
 function displayClocksAndSeconds() {
   let outputText = "Clocks:\n";
   clocksArray.forEach((clock) => {
-       outputText += `Country: ${clock.country} - ${clock.hours}:${clock.minutes}:${clock.seconds} Converted to Seconds: ${clock.ConverToSeconds()}\n`;
+       outputText += `Country: ${clock.country} - ${clock.Show()} Converted to Seconds: ${clock.ConverToSeconds()}\n`;
   });
 
   console.log(outputText);
@@ -78,7 +45,6 @@ document.getElementById("ClockForm").addEventListener("submit", function(event) 
   const minutesInput = document.getElementById("minutes").value;
   const secondsInput = document.getElementById("seconds").value;
 
-  const padWithZeros = (value) => (value < 10 ? "0" + value : value);
 
   const validHours = /^(0?[0-9]|1[0-9]|2[0-3])$/.test(hoursInput);
   const formattedHours = validHours ? padWithZeros(parseInt(hoursInput)) : "00";
