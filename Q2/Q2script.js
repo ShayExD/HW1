@@ -1,5 +1,5 @@
 
-const audio = new Audio('../../HW1/Q2/Quack.mp3');
+const audio = new Audio('../HW1/Q2/Quack.mp3');
 
 class Duck {
     constructor(name, color, age, weight, img) {
