@@ -37,8 +37,12 @@ class Counter {
   }
 
   function incrementCounter() {
-    if (myCounter) {
+  const numInput = document.getElementById('numInput');
+  const numValue = parseInt(numInput.value);
+
+    if (myCounter && !isNaN(numValue)) {
       myCounter.increment();
+      numInput.value=numValue+1;
       console.log('Counter incremented.');
     } else {
       console.error('Counter not initialized. Click Start first.');
