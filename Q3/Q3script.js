@@ -28,7 +28,7 @@ const clocksArray = [];
 function displayClocksAndSeconds() {
   let outputText = "Clocks:\n";
   clocksArray.forEach((clock) => {
-       outputText += `Country: ${clock.country} - ${clock.Show()} Converted to Seconds: ${clock.ConverToSeconds()}\n`;
+       outputText += `Country: ${clock.country} - ${clock.Show()} Converted to Seconds: ${clock.ConverToSeconds()}<br>`;
   });
 
   console.log(outputText);
